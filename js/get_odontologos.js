@@ -33,21 +33,21 @@ window.addEventListener('load', function(){
                                         <form id="form-editar-odontologo-${odontologo.id}">
                                             <div class="mb-3">
                                                 <label for="matriculaOdontologoEditar${odontologo.id}" class="form-label fw-bolder">Número de Matrícula</label>
-                                                <input type="number" class="form-control bg-input" id="matriculaOdontologoEditar${odontologo.id}" placeholder="Ingrese su número de matrícula"min="100" value="${odontologo.matricula}" required>
+                                                <input type="number" class="form-control bg-input" id="matriculaOdontologoEditar${odontologo.id}" placeholder="Ingrese su número de matrícula"min="100" value="${odontologo.matricula}" name="Matrícula" required>
                                                 <div id="matriculaOdontologoEditarError${odontologo.id}">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="nombreOdontologoEditar${odontologo.id}" class="form-label fw-bolder">Nombre</label>
                                                 <input type="text" class="form-control bg-input" id="nombreOdontologoEditar${odontologo.id}" placeholder="Ingrese su nombre"
-                                                minlength="3" maxlength="25" value="${odontologo.nombre}" required>
+                                                minlength="3" maxlength="25" value="${odontologo.nombre}" name="Nombre" required>
                                                 <div id="nombreOdontologoEditarError${odontologo.id}">
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="apellidoOdontologoEditar${odontologo.id}" class="form-label fw-bolder">Apellido</label>
                                                 <input type="text" class="form-control bg-input" id="apellidoOdontologoEditar${odontologo.id}" placeholder="Ingrese su apellido"
-                                                minlength="3" maxlength="25" value="${odontologo.apellido}" required>
+                                                minlength="3" maxlength="25" value="${odontologo.apellido}" name="Apellido" required>
                                                 <div id="apellidoOdontologoEditarError${odontologo.id}">
                                                 </div>
                                             </div>
