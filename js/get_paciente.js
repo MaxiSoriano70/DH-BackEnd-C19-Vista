@@ -19,7 +19,7 @@ const get_pacientes =()=>{
               <td>${paciente.domicilio}</td>
             <td>
                 <div class="d-flex align-items-center justify-content-center">
-                    <button type="button" class="btn btn-primary mx-1 fw-bold" data-bs-toggle="modal" data-bs-target="#editarPAcienteModal${paciente.id}" onclick="capturarDatosDelPacienteAUpdate(${paciente.id})"><i class="fa-solid fa-pen-to-square"></i> Editar
+                    <button type="button" class="btn btn-primary mx-1 fw-bold" data-bs-toggle="modal" data-bs-target="#editarPacienteModal${paciente.id}" onclick="capturarDatosDelPacienteAUpdate(${paciente.id})"><i class="fa-solid fa-pen-to-square"></i> Editar
                     </button>
                     <!-- Editar Paciente-->
                     <section class="modal fade" id="editarPacienteModal${paciente.id}" tabindex="-1" aria-labelledby="editarPacienteModal${paciente.id}" aria-hidden="true">
