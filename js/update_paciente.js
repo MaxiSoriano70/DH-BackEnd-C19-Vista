@@ -1,46 +1,49 @@
-const capturarDatosPacienteUpdate =(id)=>{
-const formulario = document.querySelector("#form-editar-perfil");
- const dniUpdate = document.querySelector("#dniPacienteEditar");
- const nombrePacienteUpdate = document.querySelector("#NombrePacienteEditar");
- const apellidoPacienteUpdate = document.querySelector("#apellidoPacienteEditar");
- const fechaPacienteEditar = document.querySelector("#fechaPacienteEditar$");
- const callePacienteEditar= document.querySelector("#callePacienteEditar");
-const numeroPacienteEditar = document.querySelector("#numeroPacienteEditar");
-const localidadPacienteEditar = document.querySelector("#localidadPacienteEditar");
-const provinciaPacienteEditar = document.querySelector("#provinciaPacienteEditar");
+const capturarDatosPacienteUpdate =(id, idDomicilio)=>{
+const formulario = document.querySelector(`#form-editar-paciente-${id}`);
+const dniUpdate = document.querySelector(`#dniPacienteEditar${id}`);
+const nombrePacienteUpdate = document.querySelector(`#NombrePacienteEditar${id}`);
+const apellidoPacienteUpdate = document.querySelector(`#apellidoPacienteEditar${id}`);
+const fechaPacienteEditar = document.querySelector(`#fechaPacienteEditar${id}`);
+const callePacienteEditar= document.querySelector(`#callePacienteEditar${id}`);
+const numeroPacienteEditar = document.querySelector(`#numeroPacienteEditar${id}`);
+const localidadPacienteEditar = document.querySelector(`#localidadPacienteEditar${id}`);
+const provinciaPacienteEditar = document.querySelector(`#provinciaPacienteEditar${id}`);
 const urlApi = "http://localhost:8080";
 
 dniUpdate.addEventListener("input", e => validarDni(e));
 nombrePacienteUpdate.addEventListener("input", e => validarTexto(e));
 apellidoPacienteUpdate.addEventListener("input", e => validarTexto(e));
-fechaPacienteEditar.addEventListener("input", e =>validarFecha (e));
+fechaPacienteEditar.addEventListener("input", e => validarFechaDeNacimiento (e));
 callePacienteEditar.addEventListener("input", e=> validarCalle(e));
-numeroPacienteEditar.addEventListener("input", e=> validarNumero(e));
-localidadPacienteEditar.addEventListener("input", e=> validarLocalidad(e));
-provinciaPacienteEditar.addEventListener("input", e=> validarProvincia(e));
+numeroPacienteEditar.addEventListener("input", e=> validarNumeroDeCalle(e));
+localidadPacienteEditar.addEventListener("input", e=> validarTexto(e));
+provinciaPacienteEditar.addEventListener("input", e=> validarTexto(e));
 
-dniUpdate.addEventListener("blur", e => validarDni(e));
-nombrePacienteUpdate.addEventListener("blur", e => isEmpty(`Se requiere que ingrese su ${nombre.name}`,e));
-apellidoPacienteUpdate.addEventListener("blur", e => isEmpty(`Se requiere que ingrese su ${apellido.name}`,e));
-fechaPacienteEditar.addEventListener("blur", e =>isEmpty (`Se requiere que ingrese su ${fecha.name}`,e));
-callePacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${calle.name}`,e));
-numeroPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${numero.name}`,e));
-localidadPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${localidad.name}`,e));
-provinciaPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${provincia.name}`,e));
+dniUpdate.addEventListener("blur", e => isEmpty(`Se requiere que ingrese su ${dniUpdate.name}`,e));
+nombrePacienteUpdate.addEventListener("blur", e => isEmpty(`Se requiere que ingrese su ${nombrePacienteUpdate.name}`,e));
+apellidoPacienteUpdate.addEventListener("blur", e => isEmpty(`Se requiere que ingrese su ${apellidoPacienteUpdate.name}`,e));
+fechaPacienteEditar.addEventListener("blur", e =>isEmpty (`Se requiere que ingrese su ${fechaPacienteEditar.name}`,e));
+callePacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${callePacienteEditar.name}`,e));
+numeroPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${numeroPacienteEditar.name}`,e));
+localidadPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${localidadPacienteEditar.name}`,e));
+provinciaPacienteEditar.addEventListener("blur", e=> isEmpty(`Se requiere que ingrese su ${provinciaPacienteEditar.name}`,e));
 
 
 formulario.addEventListener('submit', function(event){
     event.preventDefault();
     const payload ={
         id: id,
-        nombre : nombre.value,
-        apellido: apellido.value,
-        dni : dni.value,
-        fecha: fecha.value,
-        calle: calle.value,
-        numero: calle.value,
-        localidad: localidad.value,
-        provincia: provincia.value
+        apellido: apellidoPacienteUpdate.value,
+        nombre : nombrePacienteUpdate.value,
+        dni : dniUpdate.value,
+        fechaIngreso: fechaPacienteEditar.value,
+        domicilio: {
+            id: idDomicilio,
+            calle: callePacienteEditar.value,
+            numero: numeroPacienteEditar.value,
+            localidad: localidadPacienteEditar.value,
+            provincia: provinciaPacienteEditar.value
+        }
     }
     const settings = {
         method: "PUT",
@@ -49,45 +52,47 @@ formulario.addEventListener('submit', function(event){
             "Content-Type": "application/json",
         },
     }
-    const realizarUpdatePaciente = (settings) => {
-        fetch(`${urlApi}/odontologo`, settings)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('No se pudo actualizar el paciente');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            Swal.fire({
-                icon: "success",
-                title: "¡Éxito!",
-                text: "Cambios guardados",
-                showConfirmButton: false,
-                textColor: "#000",
-                background: "#eaeef4",
-                timer: 1500
-            });
-            setTimeout(() => {
-                location.replace("../pages/pacientes.html");
-            }, 1500);
-        })
-        .catch((error) => {
-            console.log(error);
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "No se pudo guardar los cambios",
-                confirmButtonColor: "#456584",
-                confirmButtonBorderColor: "#3e5975",
-                textColor: "#000",
-                background: "#eaeef4",
-            });
+
+    realizarUpdatePaciente(settings);
+    formulario.reset();
+});
+
+const realizarUpdatePaciente = (settings) => {
+    fetch(`${urlApi}/paciente`, settings)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('No se pudo actualizar el paciente');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        Swal.fire({
+            icon: "success",
+            title: "¡Éxito!",
+            text: "Cambios guardados",
+            showConfirmButton: false,
+            textColor: "#000",
+            background: "#eaeef4",
+            timer: 1500
         });
-    };
-})
-
-
+        setTimeout(() => {
+            location.replace("../pages/pacientes.html");
+        }, 1500);
+    })
+    .catch((error) => {
+        console.log(error);
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No se pudo guardar los cambios",
+            confirmButtonColor: "#456584",
+            confirmButtonBorderColor: "#3e5975",
+            textColor: "#000",
+            background: "#eaeef4",
+        });
+    });
+};
 }
 const eliminarPaciente = (id) => {
     const urlApi = "http://localhost:8080";

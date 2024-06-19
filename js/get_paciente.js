@@ -2,7 +2,7 @@ window.addEventListener('load', function(){
 const tablaPacientes = document.querySelector("#cuerpo-tabla-pacientes");
 
 const get_pacientes =()=>{
-    fetch("http://localhost:8080/pacientes")
+    fetch("http://localhost:8080/paciente")
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
@@ -15,25 +15,25 @@ const get_pacientes =()=>{
             <td>${paciente.nombre}</td>
             <td>${paciente.apellido}</td>
             <td>${paciente.dni}</td>
-             <td>${paciente.fechaIngreso}</td>
-              <td>${paciente.domicilio}</td>
+            <td>${paciente.fechaIngreso}</td>
+            <td>${paciente.domicilio.calle} ${paciente.domicilio.numero} ${paciente.domicilio.localidad} ${paciente.domicilio.provincia}</td>
             <td>
                 <div class="d-flex align-items-center justify-content-center">
-                    <button type="button" class="btn btn-primary mx-1 fw-bold" data-bs-toggle="modal" data-bs-target="#editarPacienteModal${paciente.id}" onclick="capturarDatosDelPacienteAUpdate(${paciente.id})"><i class="fa-solid fa-pen-to-square"></i> Editar
+                    <button type="button" class="btn btn-primary mx-1 fw-bold" data-bs-toggle="modal" data-bs-target="#editarPacienteModal${paciente.id}" onclick="capturarDatosPacienteUpdate(${paciente.id}, ${paciente.domicilio.id})"><i class="fa-solid fa-pen-to-square"></i> Editar
                     </button>
                     <!-- Editar Paciente-->
                     <section class="modal fade" id="editarPacienteModal${paciente.id}" tabindex="-1" aria-labelledby="editarPacienteModal${paciente.id}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header bg-color-principal">
-                                    <h5 class="modal-title text-white" id="editarPacienteModal${paciente.id}">Editar Paciente/h5>
+                                    <h5 class="modal-title text-white" id="editarPacienteModal${paciente.id}">Editar Paciente</h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body bg-color-fondo">
                                     <form id="form-editar-paciente-${paciente.id}">
                                         <div class="mb-3">
                                             <label for="NombrePacienteEditar${paciente.id}" class="form-label fw-bolder">Nombre </label>
-                                            <input type="number" class="form-control bg-input" id="NombrePacienteEditar${paciente.id}" placeholder="Ingrese su nombre"min="100" value="${paciente.nombre}" name="Nombre" required>
+                                            <input type="text" class="form-control bg-input" id="NombrePacienteEditar${paciente.id}" placeholder="Ingrese su nombre" min="100" value="${paciente.nombre}" name="Nombre" required>
                                             <div id="nombrePacienteEditarError${paciente.id}">
                                             </div>
                                         </div>
@@ -61,28 +61,28 @@ const get_pacientes =()=>{
                                         <div class="mb-3">
                                             <label for="callePacienteEditar${paciente.id}" class="form-label fw-bolder">Calle</label>
                                             <input type="text" class="form-control bg-input" id="callePacienteEditar${paciente.id}" placeholder="Ingrese su calle"
-                                            minlength="3" maxlength="25" value="${paciente.calle}" name="Calle" required>
+                                            minlength="3" maxlength="25" value="${paciente.domicilio.calle}" name="Calle" required>
                                             <div id="callePacienteEditarError${paciente.id}">
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="numeroPacienteEditar${paciente.id}" class="form-label fw-bolder">Numero</label>
                                             <input type="text" class="form-control bg-input" id="numeroPacienteEditar${paciente.id}" placeholder="Ingrese su numero de casa/departamento"
-                                            minlength="3" maxlength="25" value="${paciente.numero}" name="Numero" required>
+                                            minlength="3" maxlength="25" value="${paciente.domicilio.numero}" name="Numero" required>
                                             <div id="numeroPacienteEditarError${paciente.id}">
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="localidadPacienteEditar${paciente.id}" class="form-label fw-bolder">Localidad</label>
                                             <input type="text" class="form-control bg-input" id="localidadPacienteEditar${paciente.id}" placeholder="Ingrese su localidad"
-                                            minlength="3" maxlength="25" value="${paciente.localidad}" name="Localidad" required>
+                                            minlength="3" maxlength="25" value="${paciente.domicilio.localidad}" name="Localidad" required>
                                             <div id="localidadPacienteEditarError${paciente.id}">
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="provinciaPacienteEditar${paciente.id}" class="form-label fw-bolder">Provincia</label>
                                             <input type="text" class="form-control bg-input" id="provinciaPacienteEditar${paciente.id}" placeholder="Ingrese su provincia"
-                                            minlength="3" maxlength="25" value="${paciente.provincia}" name="Provincia" required>
+                                            minlength="3" maxlength="25" value="${paciente.domicilio.provincia}" name="Provincia" required>
                                             <div id="provinciaPacienteEditarError${paciente.id}">
                                             </div>
                                         </div>
@@ -107,8 +107,5 @@ const get_pacientes =()=>{
         console.error("Error fetching data: ",error)
     });
 }
-
 get_pacientes();
-}
-
-)
+});

@@ -131,20 +131,20 @@
                                 <div class="mb-3">
                                     <label for="nombrePacienteAgregar" class="form-label fw-bolder">Nombre</label>
                                     <input type="text" class="form-control bg-input" id="nombrePacienteAgregar" placeholder="Ingrese su nombre"
-                                    minlength="3" maxlength="25" required>
+                                    minlength="3" maxlength="25" name="Nombre" required>
                                     <div id="nombrePacienteAgregarError">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="apellidoPacienteAgregar" class="form-label fw-bolder">Apellido</label>
                                     <input type="text" class="form-control bg-input" id="apellidoPacienteAgregar" placeholder="Ingrese su apellido"
-                                    minlength="3" maxlength="25" required>
+                                    minlength="3" maxlength="25" name="Apellido" required>
                                     <div id="apellidoPacienteAgregarError">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="dniPacienteAgregar" class="form-label fw-bolder">DNI</label>
-                                    <input type="text" class="form-control bg-input" id="dniPacienteAgregar" placeholder="Ingrese su número de DNI" pattern="\d{6,10}" inputmode="numeric" required>
+                                    <input type="text" class="form-control bg-input" id="dniPacienteAgregar" placeholder="Ingrese su número de DNI" pattern="\d{6,10}" inputmode="numeric" name="Dni" required>
                                     <div id="dniPacienteAgregarError">
                                     </div>
                                 </div>
@@ -159,27 +159,27 @@
                                 <div class="mb-3">
                                     <label for="callePacienteAgregar" class="form-label fw-bolder">Calle</label>
                                     <input type="text" class="form-control bg-input" id="callePacienteAgregar" placeholder="Ingrese su calle"
-                                    minlength="3" maxlength="25" required>
+                                    minlength="3" maxlength="25" name="Calle" required>
                                     <div id="callePacienteAgregarError">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="numeroPacienteAgregar" class="form-label fw-bolder">Número</label>
-                                    <input type="number" class="form-control bg-input" id="numeroPacienteAgregar" placeholder="Ingrese su número de calle" min="1" required>
+                                    <input type="number" class="form-control bg-input" id="numeroPacienteAgregar" placeholder="Ingrese su número de calle" name="Numero" required>
                                     <div id="numeroPacienteAgregarError">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="localidadPacienteAgregar" class="form-label fw-bolder">Localidad</label>
                                     <input type="text" class="form-control bg-input" id="localidadPacienteAgregar" placeholder="Ingrese su localidad"
-                                    minlength="3" maxlength="25" required>
+                                    minlength="3" maxlength="25" name="Localidad" required>
                                     <div id="localidadPacienteAgregarError">
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="provinciaPacienteAgregar" class="form-label fw-bolder">Provincia</label>
                                     <input type="text" class="form-control bg-input" id="provinciaPacienteAgregar" placeholder="Ingrese su provincia"
-                                    minlength="3" maxlength="25" required>
+                                    minlength="3" maxlength="25" name="Provincia" required>
                                     <div id="provinciaPacienteAgregarError">
                                     </div>
                                 </div>
@@ -316,7 +316,7 @@
         </section>
 
         <!-- Modal Editar Perfil-->
-        <section class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModal" aria-hidden="true">
+        <!--<section class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-color-principal">
@@ -360,7 +360,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>-->
     </main>
 
     <!-- Footer -->
@@ -401,6 +401,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Script -->
     <script src="../js/header.js"></script>
+    <!-- Utils-->
+    <script src="../js/utils.js"></script>
+    <!-- Agregar Paciente-->
+    <script src="../js/create_paciente.js"></script>
+    <!-- Editar Paciente-->
+    <script src="../js/update_paciente.js"></script>
+    <!-- Listar Pacientes-->
+    <script src="../js/get_paciente.js"></script>
     <!-- DATA TABLES-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

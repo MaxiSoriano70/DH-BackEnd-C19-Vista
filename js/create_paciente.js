@@ -9,14 +9,14 @@ window.addEventListener('load',function(){
     const agregarLocalidadPaciente = document.querySelector("#localidadPacienteAgregar");
     const agregarProvinciaPaciente = document.querySelector("#provinciaPacienteAgregar");
 
-    agregarNombrePaciente.addEventListener ("input", e => validarNombre(e));
-    agregarApellidoPaciente.addEventListener("input", e => validarApellido(e));
+    agregarNombrePaciente.addEventListener ("input", e => validarTexto(e));
+    agregarApellidoPaciente.addEventListener("input", e => validarTexto(e));
     agregarDniPaciente.addEventListener("input", e => validarDni(e));
-    agregarFechaNacimientoPaciente.addEventListener("input" , e=> validarFechaNacimiento(e));
+    agregarFechaNacimientoPaciente.addEventListener("input" , e=> validarFechaDeNacimiento(e));
     agregarCallePaciente.addEventListener("input", e => validarCalle (e));
-    agregarNumeroPaciente.addEventListener("input" , e=> validarNumero(e));
-    agregarLocalidadPaciente.addEventListener("input", e=> validarLocalidad(e));
-    agregarProvinciaPaciente.addEventListener("input", e => validarProvincia(e));
+    agregarNumeroPaciente.addEventListener("input" , e => validarNumeroDeCalle(e));
+    agregarLocalidadPaciente.addEventListener("input", e => validarTexto(e));
+    agregarProvinciaPaciente.addEventListener("input", e => validarTexto(e));
 
     const urlApi = "http://localhost:8080";
 
@@ -24,15 +24,16 @@ window.addEventListener('load',function(){
         event.preventDefault();
 
         const payload = {
-            nombre: agregarNombrePaciente.value,
             apellido: agregarApellidoPaciente.value,
+            nombre: agregarNombrePaciente.value,
             dni: agregarDniPaciente.value,
             fechaNacimiento : agregarFechaNacimientoPaciente.value,
-            calle: agregarCallePaciente.value,
-            numero:agregarNumeroPaciente.value,
-            localidad: agregarLocalidadPaciente.value,
-            provincia:agregarProvinciaPaciente.value
-
+            domicilio:{
+                calle: agregarCallePaciente.value,
+                numero:agregarNumeroPaciente.value,
+                localidad: agregarLocalidadPaciente.value,
+                provincia:agregarProvinciaPaciente.value
+            }
         }
         const settings = {
             method: "POST",
@@ -45,7 +46,7 @@ window.addEventListener('load',function(){
         agregarPaciente.reset();
     })
     const agregarPacienteRealizado = (settings) => {
-        fetch(`${urlApi}/odontologo`,settings)
+        fetch(`${urlApi}/paciente`,settings)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);

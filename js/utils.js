@@ -122,5 +122,43 @@ const validarContraseniasIguales = (e, password) =>{
         setErrors(`${campo.name} válida.`, campo, false);
         return true;
     }
+}
 
+const validarDni = (e) =>{
+    let campo = e.target;
+    let dni = campo.value;
+
+    if (dni.length < 6) {
+        setErrors(`${campo.name} inválida. Debe ser igual al campo ${dni.name}.`, campo, true);
+        return false;
+    } else {
+        setErrors(`${campo.name} válida.`, campo, false);
+        return true;
+    }
+}
+
+const validarCalle = (e) =>{
+    let campo = e.target;
+    let calle = capitalizarTexto(campo.value);
+
+    if (calle.length < 3) {
+        setErrors(`${campo.name} inválida. Debe ser igual al campo ${dni.name}.`, campo, true);
+        return false;
+    } else {
+        setErrors(`${campo.name} válida.`, campo, false);
+        return true;
+    }
+}
+
+const validarNumeroDeCalle = (e) => {
+    let campo = e.target;
+    let numeroDeCalle = parseInt(campo.value);
+
+    if (isNaN(numeroDeCalle) || numeroDeCalle < 1) {
+        setErrors(`${campo.name} inválido. Debe ser un número mayor o igual a 1.`, campo, true);
+        return false;
+    } else {
+        setErrors(`${campo.name} válido.`, campo, false);
+        return true;
+    }
 }
