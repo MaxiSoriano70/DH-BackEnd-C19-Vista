@@ -162,3 +162,21 @@ const validarNumeroDeCalle = (e) => {
         return true;
     }
 }
+
+const validarFechaDeTurno = (e) => {
+    const campo = e.target;
+    const campoValue = campo.value;
+    const fechaIngresada = new Date(campoValue);
+    const fechaActual = new Date();
+
+    // Configurar la hora de fecha actual a medianoche para comparar solo fechas
+    fechaActual.setHours(0, 0, 0, 0);
+
+    if (fechaIngresada <= fechaActual) {
+        setErrors(`${campo.name} inválida. La fecha debe ser mayor a la fecha actual.`, campo, true);
+        return false;
+    } else {
+        setErrors(`${campo.name} válido.`, campo, false);
+        return true;
+    }
+};

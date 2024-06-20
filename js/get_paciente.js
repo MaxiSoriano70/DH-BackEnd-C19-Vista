@@ -52,11 +52,9 @@ const get_pacientes =()=>{
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="fechaPacienteEditar${paciente.id}" class="form-label fw-bolder">Fecha de ingreso</label>
-                                            <input type="text" class="form-control bg-input" id="fechaPacienteEditar${paciente.id}" placeholder="Ingrese su fecha de ingreso"
-                                            minlength="3" maxlength="25" value="${paciente.fechaIngreso}" name="FechaIngreso" required>
-                                            <div id="fechaPacienteEditarError${paciente.id}">
-                                            </div>
+                                            <label for="fechaDeIngresoPacienteEditar${paciente.id}" class="form-label fw-bolder">Fecha de Ingreso</label>
+                                            <input type="date" class="form-control bg-input" id="fechaDeIngresoPacienteEditar${paciente.id}" placeholder="Ingrese su Fecha de Ingreso" min="1900-01-01" value="${paciente.fechaIngreso}" name="FechaIngreso" required>
+                                            <div id="fechaDeIngresoPacienteEditarError${paciente.id}"></div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="callePacienteEditar${paciente.id}" class="form-label fw-bolder">Calle</label>
