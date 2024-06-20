@@ -3,7 +3,7 @@ window.addEventListener('load',function(){
     const agregarNombrePaciente= document.querySelector("#nombrePacienteAgregar");
     const agregarApellidoPaciente = document.querySelector("#apellidoPacienteAgregar");
     const agregarDniPaciente = document.querySelector("#dniPacienteAgregar");
-    const agregarFechaNacimientoPaciente = document.querySelector("#fechaDeIngresoPacienteAgregar");
+    const agregarFechaDeIngresoPaciente = document.querySelector("#fechaDeIngresoPacienteAgregar");
     const agregarCallePaciente = document.querySelector("#callePacienteAgregar");
     const agregarNumeroPaciente = document.querySelector("#numeroPacienteAgregar");
     const agregarLocalidadPaciente = document.querySelector("#localidadPacienteAgregar");
@@ -12,7 +12,7 @@ window.addEventListener('load',function(){
     agregarNombrePaciente.addEventListener ("input", e => validarTexto(e));
     agregarApellidoPaciente.addEventListener("input", e => validarTexto(e));
     agregarDniPaciente.addEventListener("input", e => validarDni(e));
-    agregarFechaNacimientoPaciente.addEventListener("input" , e=> validarFechaDeNacimiento(e));
+    agregarFechaDeIngresoPaciente.addEventListener("input" , e=> validarFechaDeNacimiento(e));
     agregarCallePaciente.addEventListener("input", e => validarCalle (e));
     agregarNumeroPaciente.addEventListener("input" , e => validarNumeroDeCalle(e));
     agregarLocalidadPaciente.addEventListener("input", e => validarTexto(e));
@@ -27,7 +27,7 @@ window.addEventListener('load',function(){
             apellido: agregarApellidoPaciente.value,
             nombre: agregarNombrePaciente.value,
             dni: agregarDniPaciente.value,
-            fechaNacimiento : agregarFechaNacimientoPaciente.value,
+            fechaIngreso: agregarFechaDeIngresoPaciente.value,
             domicilio:{
                 calle: agregarCallePaciente.value,
                 numero:agregarNumeroPaciente.value,
